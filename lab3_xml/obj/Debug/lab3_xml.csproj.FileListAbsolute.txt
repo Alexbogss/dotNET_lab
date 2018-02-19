@@ -1,0 +1,6 @@
+H:\c#\lab3_xml\lab3_xml\bin\Debug\lab3_xml.exe.config
+H:\c#\lab3_xml\lab3_xml\bin\Debug\lab3_xml.exe
+H:\c#\lab3_xml\lab3_xml\bin\Debug\lab3_xml.pdb
+H:\c#\lab3_xml\lab3_xml\obj\Debug\lab3_xml.csprojResolveAssemblyReference.cache
+H:\c#\lab3_xml\lab3_xml\obj\Debug\lab3_xml.exe
+H:\c#\lab3_xml\lab3_xml\obj\Debug\lab3_xml.pdb

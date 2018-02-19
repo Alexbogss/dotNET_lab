@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+using System.IO;
+
+namespace lab3
+{
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+    }
+}
+
+namespace Logic
+{
+    class PaymentProcessor
+    {
+
+
+    }
+}
+
+namespace Data
+{
+    class Payment
+    {
+        public string PayName;
+        public DateTime PayDate;
+        public string PayNum;
+        public double PaySum;
+    }
+
+    class Bill
+    {
+
+        public string BillName;
+        public DateTime BillDate;
+        public string BillNum;
+        public double BillSum;
+    }
+
+    class Repository
+    {
+
+        double Sum;
+
+        public List<Payment> ReadPay()
+        {
+            var payments = new List<Payment>();
+            using (StreamReader sr = new StreamReader("text.txt"))
+            {
+                sr.ReadLine();
+                string line;
+                
+                while ((line = sr.ReadLine()) != null)
+                {
+                    
+                    var flds = line.Split(';');
+                    payments.Add(new Payment
+                    {
+                        PayName = flds[0],
+                        PayDate = DateTime.ParseExact(flds[1], "dd.MM.yyyy", null),
+                        PayNum = flds[2],
+                        PaySum = Double.Parse(flds[3])
+                    });
+                }
+            }
+            return payments;
+        }
+
+        public List<Bill> ReadBill()
+        {
+            var bills = new List<Bill>();
+            var doc = new XmlDocument();
+            doc.Load("lab_3_bills.xml");
+            foreach (XmlElement e in doc.SelectNodes("Bills/Bill"))
+            {
+                bills.Add(new Bill
+                {
+                    BillName = e.Attributes["Client"].Value,
+                    BillDate = DateTime.ParseExact(e.Attributes["Date"].Value, "dd.MM.yyyy",null),
+                    BillNum = e.Attributes["Number"].Value,
+                    BillSum = Double.Parse(e.Attributes["Sum"].Value)
+                });
+            }
+            return bills;
+        }
+
+        void WriteXML()
+        {
+
+
+        }
+    }
+}
